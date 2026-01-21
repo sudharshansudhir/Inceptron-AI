@@ -1,0 +1,7 @@
+.env
+node_modules
+
+chroma
+
+# chroma run --host localhost --port 8000
+
