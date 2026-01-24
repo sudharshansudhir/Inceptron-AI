@@ -31,7 +31,7 @@ export default function UploadDocument() {
     } catch (err) {
       alert(err.response?.data?.message || "Upload failed");
     }
-  };
+  }; 
 
   return (
     <div className="max-w-3xl mx-auto space-y-8">

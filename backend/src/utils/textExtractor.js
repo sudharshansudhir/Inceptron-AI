@@ -6,7 +6,7 @@ export const extractText = async (file) => {
   if (ext !== "docx") {
     throw new Error("Only DOCX files are supported");
   }
-
+ 
   const result = await mammoth.extractRawText({
     buffer: file.buffer
   });
