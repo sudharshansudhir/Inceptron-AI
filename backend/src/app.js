@@ -19,5 +19,10 @@ app.use("/api/document", documentRoutes);
 app.use("/api/chat", chatRoutes);
 
 app.use("/api/student", studentRoutes);
+import { embedText } from "./services/embeddingService.js";
+
+const test = await embedText("hello world");
+console.log("Embedding length:", test.length);
 
 export default app;
+ 

@@ -1,6 +1,6 @@
 import Class from "../models/Class.js";
 import Chat from "../models/Chat.js";
-import { queryChroma } from "../services/ragQueryService.js";
+import { queryChroma } from "../services/ragService.js";
 import { geminiModel } from "../config/gemini.js";
 
 export const askQuestion = async (req, res) => {

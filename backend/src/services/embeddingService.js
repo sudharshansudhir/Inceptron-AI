@@ -1,10 +1,28 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { pipeline } from '@xenova/transformers';
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+let extractor;
+
+// load model once
+const loadModel = async () => {
+  if (!extractor) {
+    extractor = await pipeline(
+      'feature-extraction',
+      'Xenova/all-MiniLM-L6-v2'
+    );
+  }
+};
 
 export const embedText = async (text) => {
-  const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
+  if (!text || text.trim() === "") {
+    throw new Error("Empty text");
+  }
 
-  const result = await model.embedContent(text);
-  return result.embedding.values;
+  await loadModel();
+
+  const result = await extractor(text, {
+    pooling: 'mean',
+    normalize: true
+  });
+
+  return Array.from(result.data); // 384-dim
 };
